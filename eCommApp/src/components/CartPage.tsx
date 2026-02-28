@@ -14,7 +14,7 @@ const CartPage = () => {
         throw new Error('CartContext must be used within a CartProvider');
     }
 
-    const { cartItems, clearCart } = cartContext;
+    const { cartItems, updateQuantity, removeFromCart, clearCart } = cartContext;
 
     const handleCheckout = () => {
         setIsCheckingOut(true);
@@ -70,7 +70,25 @@ const CartPage = () => {
                                         <div className="cart-item-info">
                                             <h3>{item.name}</h3>
                                             <p>Price: ${item.price.toFixed(2)}</p>
-                                            <p>Quantity: {item.quantity}</p>
+                                            <div className="cart-item-quantity">
+                                                <span>Quantity:</span>
+                                                <button
+                                                    className="qty-btn"
+                                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                                    aria-label={`Decrease quantity of ${item.name}`}
+                                                >−</button>
+                                                <span className="qty-value">{item.quantity}</span>
+                                                <button
+                                                    className="qty-btn"
+                                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                                    aria-label={`Increase quantity of ${item.name}`}
+                                                >+</button>
+                                                <button
+                                                    className="remove-btn"
+                                                    onClick={() => removeFromCart(item.id)}
+                                                    aria-label={`Remove ${item.name} from cart`}
+                                                >Remove</button>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
