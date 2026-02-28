@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -81,44 +81,44 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Utility functions for the shopping app
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span></td><td class="text"><pre class="prettyprint lang-js">// Utility functions for the shopping app
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const formatPrice = (price: number): string =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return new Intl.NumberFormat('en-US', {</span>
-<span class="cstat-no" title="statement not covered" >    style: 'currency',</span>
-<span class="cstat-no" title="statement not covered" >    currency: 'USD'</span>
-<span class="cstat-no" title="statement not covered" >  }).format(price)</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export const formatPrice = (price: number): string =&gt; {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(price)
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const calculateTotal = (items: Array&lt;{ price: number; quantity: number }&gt;): number =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  return items.reduce((total, item) =&gt; total + (item.price * item.quantity), 0)</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export const calculateTotal = (items: Array&lt;{ price: number; quantity: number }&gt;): number =&gt; {
+  return items.reduce((total, item) =&gt; total + (item.price * item.quantity), 0)
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const validateEmail = (email: string): boolean =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/</span>
-<span class="cstat-no" title="statement not covered" >  return emailRegex.test(email)</span>
-<span class="cstat-no" title="statement not covered" >}</span></pre></td></tr></table></pre>
+export const validateEmail = (email: string): boolean =&gt; {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-02-28T16:21:31.322Z
+                at 2026-02-28T16:45:41.215Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
