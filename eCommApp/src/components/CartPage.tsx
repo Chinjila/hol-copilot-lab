@@ -74,18 +74,18 @@ const CartPage = () => {
                                                 <span>Quantity:</span>
                                                 <button
                                                     className="qty-btn"
-                                                    onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                                    onClick={() => updateQuantity(item.id ?? item.name, item.quantity - 1)}
                                                     aria-label={`Decrease quantity of ${item.name}`}
                                                 >−</button>
                                                 <span className="qty-value">{item.quantity}</span>
                                                 <button
                                                     className="qty-btn"
-                                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                                    onClick={() => updateQuantity(item.id ?? item.name, item.quantity + 1)}
                                                     aria-label={`Increase quantity of ${item.name}`}
                                                 >+</button>
                                                 <button
                                                     className="remove-btn"
-                                                    onClick={() => removeFromCart(item.id)}
+                                                    onClick={() => removeFromCart(item.id ?? item.name)}
                                                     aria-label={`Remove ${item.name} from cart`}
                                                 >Remove</button>
                                             </div>

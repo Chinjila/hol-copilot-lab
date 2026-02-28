@@ -45,7 +45,15 @@ const productsByFile = {
 const renderWithCartContext = (addToCart = vi.fn()) => {
   return render(
     <MemoryRouter>
-      <CartContext.Provider value={{ cartItems: [], addToCart, clearCart: vi.fn() }}>
+      <CartContext.Provider
+        value={{
+          cartItems: [],
+          addToCart,
+          updateQuantity: vi.fn(),
+          removeFromCart: vi.fn(),
+          clearCart: vi.fn()
+        }}
+      >
         <ProductsPage />
       </CartContext.Provider>
     </MemoryRouter>
