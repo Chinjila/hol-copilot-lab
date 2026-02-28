@@ -68,7 +68,7 @@ describe('ProductsPage', () => {
   })
 
   it('shows loading first and then renders fetched products', async () => {
-    global.fetch = vi.fn((input: RequestInfo | URL) => {
+    globalThis.fetch = vi.fn((input: RequestInfo | URL) => {
       const fileName = String(input).split('/').pop() as keyof typeof productsByFile
       return Promise.resolve({
         ok: true,
@@ -82,13 +82,13 @@ describe('ProductsPage', () => {
     expect(await screen.findByText('Our Products')).toBeInTheDocument()
     expect(screen.getByText('Apple')).toBeInTheDocument()
     expect(screen.getByText('$1.25')).toBeInTheDocument()
-    expect(global.fetch).toHaveBeenCalledTimes(4)
+    expect(globalThis.fetch).toHaveBeenCalledTimes(4)
   })
 
   it('adds in-stock products to cart and disables out-of-stock products', async () => {
     const addToCart = vi.fn()
 
-    global.fetch = vi.fn((input: RequestInfo | URL) => {
+    globalThis.fetch = vi.fn((input: RequestInfo | URL) => {
       const fileName = String(input).split('/').pop() as keyof typeof productsByFile
       return Promise.resolve({
         ok: true,
@@ -106,7 +106,7 @@ describe('ProductsPage', () => {
   })
 
   it('updates displayed reviews when a new review is submitted', async () => {
-    global.fetch = vi.fn((input: RequestInfo | URL) => {
+    globalThis.fetch = vi.fn((input: RequestInfo | URL) => {
       const fileName = String(input).split('/').pop() as keyof typeof productsByFile
       return Promise.resolve({
         ok: true,
@@ -128,7 +128,7 @@ describe('ProductsPage', () => {
   it('handles fetch errors and exits loading state', async () => {
     const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
-    global.fetch = vi.fn(() => {
+    globalThis.fetch = vi.fn(() => {
       return Promise.resolve({
         ok: false,
         json: () => Promise.resolve({})

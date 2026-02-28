@@ -54,3 +54,26 @@ eCommApp/
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
+
+## ☁️ Azure Static Web Apps Deployment (GitHub Actions)
+
+This repository is configured to deploy `eCommApp` to Azure Static Web Apps using GitHub Actions.
+
+### Added workflow
+
+- Workflow file: `.github/workflows/azure-static-web-apps.yml`
+- App location: `eCommApp`
+- Build output: `dist`
+- Triggers:
+   - Push to `main` deploys production
+   - Pull requests to `main` create/update preview environments
+   - Closing a PR closes the preview environment
+
+### One-time setup
+
+1. Create an Azure Static Web App in the Azure Portal.
+2. In GitHub, go to your repository: **Settings** → **Secrets and variables** → **Actions**.
+3. Add this repository secret:
+    - `AZURE_STATIC_WEB_APPS_API_TOKEN` = deployment token from your Static Web App.
+
+After the secret is added, any push to `main` runs the workflow and deploys the latest build.
