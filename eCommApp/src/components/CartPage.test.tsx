@@ -45,6 +45,8 @@ const mockCartItems: CartItem[] = [
 const mockCartContext = {
     cartItems: mockCartItems,
     addToCart: vi.fn(),
+    updateQuantity: vi.fn(),
+    removeFromCart: vi.fn(),
     clearCart: vi.fn()
 };
 
@@ -69,8 +71,9 @@ describe('CartPage', () => {
         expect(screen.getByText('Test Product 2')).toBeInTheDocument();
         expect(screen.getByText('Price: $29.99')).toBeInTheDocument();
         expect(screen.getByText('Price: $49.99')).toBeInTheDocument();
-        expect(screen.getByText('Quantity: 2')).toBeInTheDocument();
-        expect(screen.getByText('Quantity: 1')).toBeInTheDocument();
+        // quantity values are shown in their own span
+        const qtyValues = screen.getAllByRole('button', { name: /decrease quantity/i });
+        expect(qtyValues).toHaveLength(2);
     });
 
     it('displays a message when the cart is empty', () => {
@@ -258,7 +261,40 @@ describe('CartPage', () => {
             }]
         };
         renderWithCartContext(highQtyContext);
-        expect(screen.getByText('Quantity: 9999')).toBeInTheDocument();
+        expect(screen.getByText('9999')).toBeInTheDocument();
         expect(screen.getByText('Price: $1.50')).toBeInTheDocument();
+    });
+
+    // --- Quantity adjustment controls ---
+    it('renders increase and decrease quantity buttons for each cart item', () => {
+        renderWithCartContext();
+        expect(screen.getAllByRole('button', { name: /increase quantity/i })).toHaveLength(2);
+        expect(screen.getAllByRole('button', { name: /decrease quantity/i })).toHaveLength(2);
+    });
+
+    it('calls updateQuantity with incremented value when + button is clicked', () => {
+        renderWithCartContext();
+        const increaseBtn = screen.getByRole('button', { name: /increase quantity of Test Product 1/i });
+        fireEvent.click(increaseBtn);
+        expect(mockCartContext.updateQuantity).toHaveBeenCalledWith('1', 3);
+    });
+
+    it('calls updateQuantity with decremented value when - button is clicked', () => {
+        renderWithCartContext();
+        const decreaseBtn = screen.getByRole('button', { name: /decrease quantity of Test Product 1/i });
+        fireEvent.click(decreaseBtn);
+        expect(mockCartContext.updateQuantity).toHaveBeenCalledWith('1', 1);
+    });
+
+    it('renders a remove button for each cart item', () => {
+        renderWithCartContext();
+        expect(screen.getAllByRole('button', { name: /remove/i })).toHaveLength(2);
+    });
+
+    it('calls removeFromCart when Remove button is clicked', () => {
+        renderWithCartContext();
+        const removeBtn = screen.getByRole('button', { name: /remove Test Product 1 from cart/i });
+        fireEvent.click(removeBtn);
+        expect(mockCartContext.removeFromCart).toHaveBeenCalledWith('1');
     });
 });

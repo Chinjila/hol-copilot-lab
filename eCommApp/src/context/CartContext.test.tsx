@@ -29,6 +29,9 @@ const CartConsumer = () => {
     <>
       <button onClick={() => context.addToCart(apple)}>Add apple</button>
       <button onClick={() => context.addToCart(grape)}>Add grape</button>
+      <button onClick={() => context.updateQuantity('apple', 5)}>Set apple qty 5</button>
+      <button onClick={() => context.updateQuantity('apple', 0)}>Set apple qty 0</button>
+      <button onClick={() => context.removeFromCart('apple')}>Remove apple</button>
       <button onClick={context.clearCart}>Clear cart</button>
       <div data-testid="cart-length">{context.cartItems.length}</div>
       <div data-testid="apple-qty">
@@ -88,5 +91,47 @@ describe('CartContext', () => {
     fireEvent.click(screen.getByText('Clear cart'))
 
     expect(screen.getByTestId('cart-length')).toHaveTextContent('0')
+  })
+
+  it('updates the quantity of an item in the cart', () => {
+    render(
+      <CartProvider>
+        <CartConsumer />
+      </CartProvider>
+    )
+
+    fireEvent.click(screen.getByText('Add apple'))
+    fireEvent.click(screen.getByText('Set apple qty 5'))
+
+    expect(screen.getByTestId('apple-qty')).toHaveTextContent('5')
+    expect(screen.getByTestId('cart-length')).toHaveTextContent('1')
+  })
+
+  it('removes an item from the cart when quantity is set to 0', () => {
+    render(
+      <CartProvider>
+        <CartConsumer />
+      </CartProvider>
+    )
+
+    fireEvent.click(screen.getByText('Add apple'))
+    fireEvent.click(screen.getByText('Set apple qty 0'))
+
+    expect(screen.getByTestId('cart-length')).toHaveTextContent('0')
+  })
+
+  it('removes an item from the cart using removeFromCart', () => {
+    render(
+      <CartProvider>
+        <CartConsumer />
+      </CartProvider>
+    )
+
+    fireEvent.click(screen.getByText('Add apple'))
+    fireEvent.click(screen.getByText('Add grape'))
+    fireEvent.click(screen.getByText('Remove apple'))
+
+    expect(screen.getByTestId('cart-length')).toHaveTextContent('1')
+    expect(screen.getByTestId('apple-qty')).toHaveTextContent('0')
   })
 })
