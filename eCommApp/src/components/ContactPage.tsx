@@ -22,9 +22,12 @@ const ContactPage = () => {
             <main className="main-content">
                 <h2>Contact Us</h2>
                 <form ref={formRef} onSubmit={handleSubmit} className="contact-form">
-                    <input type="text" name="name" placeholder="Your name" required />
-                    <input type="email" name="email" placeholder="Your email" required />
-                    <textarea name="request" placeholder="Your request" required />
+                    <label htmlFor="contact-name">Name</label>
+                    <input id="contact-name" type="text" name="name" placeholder="Your name" required />
+                    <label htmlFor="contact-email">Email</label>
+                    <input id="contact-email" type="email" name="email" placeholder="Your email" required />
+                    <label htmlFor="contact-request">Request</label>
+                    <textarea id="contact-request" name="request" placeholder="Your request" required />
                     <button type="submit">Submit</button>
                 </form>
             </main>
